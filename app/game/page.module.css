@@ -1,0 +1,520 @@
+.desktopWarning {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #0D1321;
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+    gap: 20px;
+}
+
+.desktopWarning h1 {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.desktopWarning p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    color: #ccc;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    padding-bottom: 140px;
+    background: #0D1321;
+    gap: 20px;
+    position: relative;
+}
+
+/* Notification style iPhone */
+.notification {
+    width: 100%;
+    background: rgba(30, 30, 35, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 14px 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.notifHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.notifIcon {
+    width: 28px;
+    height: 28px;
+    background: #F5A623;
+    border-radius: 50%;
+    position: relative;
+}
+
+.notifIcon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: #0D1321;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.notifTitle {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 0.05em;
+    flex: 1;
+}
+
+.timerBadge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(231, 76, 60, 0.2);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.timerIcon {
+    font-size: 0.9rem;
+}
+
+.timerValue {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+    font-family: monospace;
+}
+
+.timerDanger {
+    color: #E74C3C !important;
+    animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.notifMessage {
+    font-size: 0.95rem;
+    color: #E8E8E8;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Section Code */
+.codeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    flex: 1;
+    justify-content: center;
+}
+
+.codeInputs {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.codeInput {
+    width: 55px;
+    height: 65px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: #1A1F2E;
+    border: 2px solid #333;
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.codeInput:focus {
+    border-color: #F5A623;
+}
+
+.codeInput::placeholder {
+    color: #444;
+}
+
+/* Boutons d'action */
+.actionButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 320px;
+    padding: 18px;
+    background: #1A1F2E;
+    color: #fff;
+    border: 2px solid #333;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+.actionButton:active {
+    background: #252B3D;
+}
+
+.actionButtonYellow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 320px;
+    padding: 22px 30px;
+    background: linear-gradient(135deg, #F5A623 0%, #D4881A 100%);
+    color: #0D1321;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
+    cursor: pointer;
+}
+
+.actionButtonYellow:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+}
+
+/* Section Lockpick */
+.lockpickSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    flex: 1;
+    justify-content: center;
+    position: relative;
+}
+
+.lockpickTimer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.timerText {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #E74C3C;
+    font-family: monospace;
+}
+
+.timerBarSmall {
+    width: 80px;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.timerProgress {
+    height: 100%;
+    background: linear-gradient(90deg, #E74C3C, #C0392B);
+    transition: width 1s linear;
+}
+
+.lockIndicator {
+    display: flex;
+    gap: 10px;
+}
+
+.lockDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #333;
+    border: 2px solid #555;
+    transition: all 0.3s;
+}
+
+.lockDone {
+    background: #5FB894;
+    border-color: #5FB894;
+}
+
+.lockCurrent {
+    background: #F5A623;
+    border-color: #F5A623;
+    animation: pulseDot 1s infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.lockVisual {
+    position: relative;
+    margin: 10px 0;
+}
+
+.lockBody {
+    position: relative;
+    width: 120px;
+    height: 150px;
+}
+
+.lockShackle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65px;
+    height: 50px;
+    border: 10px solid #D4A84B;
+    border-bottom: none;
+    border-radius: 40px 40px 0 0;
+    background: transparent;
+}
+
+.lockFace {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 90px;
+    background: linear-gradient(145deg, #D4A84B, #A67C33);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #8B6914;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.keyhole {
+    width: 20px;
+    height: 35px;
+    background: #0D1321;
+    border-radius: 50% 50% 5px 5px;
+    position: relative;
+}
+
+.keyhole::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 18px;
+    background: #0D1321;
+}
+
+.paperclipContainer {
+    position: relative;
+    width: 60px;
+    height: 100px;
+}
+
+.paperclip {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.pickArea {
+    width: 100%;
+    padding: 0 20px;
+}
+
+.pickTrack {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: #1A1F2E;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 2px solid #333;
+}
+
+.successZone {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    width: 20%;
+    height: 100%;
+    background: rgba(95, 184, 148, 0.3);
+    border-left: 2px solid #5FB894;
+    border-right: 2px solid #5FB894;
+}
+
+.pickIndicator {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 40px;
+    background: linear-gradient(180deg, #fff, #ccc);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.penaltySection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.penaltyCircle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.penaltyRing {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.penaltyNumber {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #E74C3C;
+}
+
+.penaltyText {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+}
+
+.penaltySubtext {
+    font-size: 1rem;
+    color: #E74C3C;
+    margin: 0;
+}
+
+.successSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.successIcon {
+    font-size: 5rem;
+    color: #5FB894;
+    background: rgba(95, 184, 148, 0.2);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.successTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+}
+
+.successTableau {
+    font-size: 1.2rem;
+    color: #888;
+    margin: 0;
+}
+
+.successValue {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #5FB894;
+    margin: 0;
+}
+
+.bagSection {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(180deg, transparent, #0D1321 30%);
+    padding-top: 40px;
+}
+
+.bagInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(26, 31, 46, 0.9);
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: 2px solid #5FB894;
+}
+
+.bagIcon {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #F5A623;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.bagMoney {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #5FB894;
+}
+
+.stolenList {
+    display: flex;
+    gap: 8px;
+}
+
+.stolenItem {
+    background: rgba(95, 184, 148, 0.2);
+    border: 1px solid #5FB894;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #5FB894;
+}

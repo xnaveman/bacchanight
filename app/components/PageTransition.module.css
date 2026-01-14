@@ -1,0 +1,88 @@
+.transitionWrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.pageContent {
+    position: relative;
+    z-index: 1;
+}
+
+.transitionOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.band {
+    flex: 1;
+    height: 100%;
+    transform: translateY(-100%);
+}
+
+.band1 {
+    background: #F5A623;
+}
+
+.band2 {
+    background: #D4881A;
+}
+
+.band3 {
+    background: #0D1321;
+}
+
+.band4 {
+    background: #1A1F2E;
+}
+
+.band5 {
+    background: #5FB894;
+}
+
+/* Animation de sortie - les bandes descendent */
+.exit .band {
+    animation: slideDown 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.exit .band1 { animation-delay: 0ms; }
+.exit .band2 { animation-delay: 50ms; }
+.exit .band3 { animation-delay: 100ms; }
+.exit .band4 { animation-delay: 150ms; }
+.exit .band5 { animation-delay: 200ms; }
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+/* Animation d'entrée - les bandes remontent */
+.enter .band {
+    animation: slideUp 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.enter .band1 { animation-delay: 200ms; }
+.enter .band2 { animation-delay: 150ms; }
+.enter .band3 { animation-delay: 100ms; }
+.enter .band4 { animation-delay: 50ms; }
+.enter .band5 { animation-delay: 0ms; }
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
