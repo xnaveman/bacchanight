@@ -5,11 +5,16 @@ import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
 const tableaux = [
-    { code: "AB12", nom: "Tableau 1", valeur: 5000, difficulte: 1, messageApres: "Message tab 1" },
-    { code: "CD34", nom: "Tableau 2", valeur: 8000, difficulte: 2, messageApres: "Message Tab 2" },
-    { code: "EF56", nom: "Tableau 3", valeur: 12000, difficulte: 3, messageApres: "Message tab 3" },
-    { code: "GH78", nom: "Tableau 4", valeur: 10000, difficulte: 2, messageApres: "Message tab 4" },
-    { code: "IJ90", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "MD36", nom: "Tableau 1", valeur: 5000, difficulte: 1, messageApres: "Message tab 1" },
+    { code: "GS20", nom: "Tableau 2", valeur: 8000, difficulte: 2, messageApres: "Message Tab 2" },
+    { code: "GS42", nom: "Tableau 3", valeur: 12000, difficulte: 3, messageApres: "Message tab 3" },
+    { code: "GS00", nom: "Tableau 4", valeur: 10000, difficulte: 2, messageApres: "Message tab 4" },
+    { code: "GS00", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "AM37", nom: "Tableau 6", valeur: 71000, difficulte: 2, messageApres: "Message tab 6" },
+    { code: "AM35", nom: "Tableau 7", valeur: 91000, difficulte: 3, messageApres: "Message tab 7" },
+    { code: "FC30", nom: "Tableau 8", valeur: 21000, difficulte: 1, messageApres: "Message tab 8" },
+    { code: "FR21", nom: "Tableau 9", valeur: 221000, difficulte: 1, messageApres: "Message tab 9" },
+
 ];
 
 type GameState = 'code' | 'lockpick' | 'success' | 'penalty';
