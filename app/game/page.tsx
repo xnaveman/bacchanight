@@ -7,33 +7,33 @@ import styles from './page.module.css';
 
 const tableaux = [
     { code: "0384", nom: "Tableau 1", valeur: 5000, difficulte: 1, messageApres: "Message tab 1" },
-    { code: "7291", nom: "Tableau 2", valeur: 8000, difficulte: 2, messageApres: "Message Tab 2" },
-    { code: "4607", nom: "Tableau 3", valeur: 12000, difficulte: 3, messageApres: "Message tab 3" },
-    { code: "9152", nom: "Tableau 4", valeur: 10000, difficulte: 2, messageApres: "Message tab 4" },
-    { code: "2846", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "6703", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "1498", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "5029", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "8361", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "7740", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "0916", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "3582", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "6409", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "2175", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "9843", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "4031", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "5687", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "7924", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "1250", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "6819", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "9476", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "3068", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "8542", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "2397", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "7104", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "4926", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "8635", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
-    { code: "0509", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "7291", nom: "Tableau 2", valeur: 5000, difficulte: 1, messageApres: "Message Tab 2" },
+    { code: "4607", nom: "Tableau 3", valeur: 5000, difficulte: 1, messageApres: "Message tab 3" },
+    { code: "9152", nom: "Tableau 4", valeur: 5000, difficulte: 1, messageApres: "Message tab 4" },
+    { code: "2846", nom: "Tableau simple", valeur: 3500, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "6703", nom: "Tableau reconnu", valeur: 5000, difficulte: 2, messageApres: "Message tab 5" },
+    { code: "1498", nom: "Tableau cher", valeur: 10000, difficulte: 3, messageApres: "Message tab 5" },
+    { code: "5029", nom: "Tableau reconnu", valeur: 8000, difficulte: 2, messageApres: "Message tab 5" },
+    { code: "8361", nom: "Tableau reconnu", valeur: 4000, difficulte: 2, messageApres: "Message tab 5" },
+    { code: "7740", nom: "Tableau simple", valeur: 3500, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "0916", nom: "Tableau simple", valeur: 3500, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "3582", nom: "Tableau ", valeur: 6000, difficulte: 2, messageApres: "Message tab 5" },
+    { code: "6409", nom: "Tableau", valeur: 2500, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "2175", nom: "Tableau 5", valeur: 5000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "9843", nom: "Tableau 5", valeur: 5000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "4031", nom: "Tableau 5", valeur: 5000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "5687", nom: "Tableau 5", valeur: 5000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "7924", nom: "Tableau 5", valeur: 5000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "1250", nom: "Tableau 5", valeur: 5000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "6819", nom: "Tableau 5", valeur: 5000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "9476", nom: "Tableau 5", valeur: 5000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "3068", nom: "Tableau simple", valeur: 1000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "8542", nom: "Tableau", valeur: 4000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "2397", nom: "Tableau", valeur: 2500, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "7104", nom: "Tableau simple", valeur: 3000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "4926", nom: "Tableau simple", valeur: 3000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "8635", nom: "Tableau cher", valeur: 15000, difficulte: 3, messageApres: "Message tab 5" },
+    { code: "0509", nom: "Tableau très cher", valeur: 20000, difficulte: 4, messageApres: "Message tab 5" },
 ];
 
 type GameState = 'code' | 'lockpick' | 'success' | 'penalty';
@@ -116,10 +116,19 @@ export default function Game() {
         if (!isPickMoving || gameState !== 'lockpick') return;
         
         const speed = 1.875; // Réduit de 25% (2.5 * 0.75 = 1.875)
+        let animationId: number;
+        let lastTime = Date.now();
         
-        const interval = setInterval(() => {
+        const animate = () => {
+            const currentTime = Date.now();
+            const deltaTime = currentTime - lastTime;
+            lastTime = currentTime;
+            
+            // Ajuste la vitesse en fonction du temps écoulé pour une animation fluide
+            const adjustment = (deltaTime / 16);
+            
             setPickPosition(prev => {
-                let next = prev + pickDirection * speed;
+                let next = prev + pickDirection * speed * adjustment;
                 if (next >= 100) {
                     setPickDirection(-1);
                     return 100;
@@ -130,9 +139,12 @@ export default function Game() {
                 }
                 return next;
             });
-        }, 16);
-
-        return () => clearInterval(interval);
+            
+            animationId = requestAnimationFrame(animate);
+        };
+        
+        animationId = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(animationId);
     }, [isPickMoving, gameState, pickDirection]);
 
     const showNotification = (newMessage: string) => {
