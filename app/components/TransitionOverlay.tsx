@@ -5,47 +5,38 @@ import { useTransition } from './TransitionContext';
 import styles from './TransitionOverlay.module.css';
 
 export default function TransitionOverlay() {
-    const { isTransitioning, isNavigating } = useTransition();
-    const [stage, setStage] = useState<'idle' | 'enter' | 'exit' | 'cover'>('enter');
-    const [mounted, setMounted] = useState(false);
+    const { isTransitioning } = useTransition();
+    const [phase, setPhase] = useState<'hidden' | 'covering' | 'revealing'>('revealing');
 
-    // Animation initiale au chargement
+    // Animation initiale : révéler la page au chargement
     useEffect(() => {
-        setMounted(true);
-        setStage('enter');
-        const timer = setTimeout(() => {
-            setStage('idle');
-        }, 900);
+        const timer = setTimeout(() => setPhase('hidden'), 800);
         return () => clearTimeout(timer);
     }, []);
 
-    // Animation lors des transitions
+    // Quand une transition commence
     useEffect(() => {
-        if (isTransitioning && mounted) {
-            setStage('exit');
-            
-            const timer = setTimeout(() => {
-                setStage('cover'); // Garder couvert pendant la navigation
-            }, 700);
-            
-            return () => clearTimeout(timer);
-        } else if (!isTransitioning && !isNavigating && stage === 'cover') {
-            // Lancer l'animation d'entrée après le chargement
-            setStage('enter');
-            const timer = setTimeout(() => {
-                setStage('idle');
-            }, 900);
+        if (isTransitioning) {
+            setPhase('covering');
+        }
+    }, [isTransitioning]);
+
+    // Quand la transition se termine (nouvelle page chargée)
+    useEffect(() => {
+        if (!isTransitioning && phase === 'covering') {
+            setPhase('revealing');
+            const timer = setTimeout(() => setPhase('hidden'), 800);
             return () => clearTimeout(timer);
         }
-    }, [isTransitioning, isNavigating, mounted, stage]);
+    }, [isTransitioning, phase]);
 
     return (
-        <div className={`${styles.overlay} ${stage === 'exit' ? styles.exit : ''} ${stage === 'enter' ? styles.enter : ''} ${stage === 'idle' ? styles.idle : ''} ${stage === 'cover' ? styles.cover : ''}`}>
-            <div className={`${styles.band} ${styles.band1}`}></div>
-            <div className={`${styles.band} ${styles.band2}`}></div>
-            <div className={`${styles.band} ${styles.band3}`}></div>
-            <div className={`${styles.band} ${styles.band4}`}></div>
-            <div className={`${styles.band} ${styles.band5}`}></div>
+        <div className={`${styles.overlay} ${styles[phase]}`}>
+            <div className={styles.bar} style={{ animationDelay: '0ms' }} />
+            <div className={styles.bar} style={{ animationDelay: '50ms' }} />
+            <div className={styles.bar} style={{ animationDelay: '100ms' }} />
+            <div className={styles.bar} style={{ animationDelay: '150ms' }} />
+            <div className={styles.bar} style={{ animationDelay: '200ms' }} />
         </div>
     );
 }
