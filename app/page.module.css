@@ -27,11 +27,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100dvh;
+    min-height: 100vh;
     padding: 40px 20px 30px;
     background: #0D1321;
     overflow-y: auto;
-    overflow-x: hidden;
 }
 
 .title {
@@ -59,7 +58,6 @@
     gap: 12px;
     width: 100%;
     max-width: 340px;
-    flex: 1;
     padding: 10px 0;
 }
 
@@ -109,7 +107,7 @@
     font-weight: 700;
     transition: transform 0.2s;
     -webkit-tap-highlight-color: transparent;
-    margin-top: auto;
+    margin-top: 20px;
     margin-bottom: 15px;
 }
 
