@@ -115,7 +115,7 @@ export default function Game() {
     useEffect(() => {
         if (!isPickMoving || gameState !== 'lockpick') return;
         
-        const speed = 1.725;
+        const speed = 1.45;
         let animationId: number;
         let lastTime = Date.now();
         
