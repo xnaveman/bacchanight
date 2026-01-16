@@ -4,12 +4,16 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
     background: #0D1321;
     color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
 }
 
 html {

@@ -28,14 +28,24 @@
     flex-direction: column;
     align-items: center;
     height: 100dvh;
+    height: 100vh;
+    height: -webkit-fill-available;
     max-height: 100dvh;
+    max-height: 100vh;
+    max-height: -webkit-fill-available;
     padding: 10px;
-    padding-bottom: 140px;
+    padding-bottom: 130px;
     background: #0D1321;
-    gap: 10px;
-    position: relative;
+    gap: 8px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     overflow: hidden;
     box-sizing: border-box;
+    touch-action: none;
+    overscroll-behavior: none;
 }
 
 /* Notification style iOS */
