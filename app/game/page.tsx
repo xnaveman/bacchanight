@@ -115,7 +115,7 @@ export default function Game() {
     useEffect(() => {
         if (!isPickMoving || gameState !== 'lockpick') return;
         
-        const speed = 1.875;
+        const speed = 1.75;
         let animationId: number;
         let lastTime = Date.now();
         
@@ -201,8 +201,8 @@ export default function Game() {
         
         setIsPickMoving(false);
         
-        const successStart = 40;
-        const successEnd = 60;
+        const successStart = 38;
+        const successEnd = 62;
         
         if (pickPosition >= successStart && pickPosition <= successEnd) {
             if (currentLockIndex + 1 >= totalLocks) {
@@ -215,7 +215,6 @@ export default function Game() {
                     setAlarmTriggered(true);
                 }
             } else {
-                // Animation de transition entre cadenas
                 setLockTransition(true);
                 setIsPickMoving(false);
                 setTimeout(() => {
