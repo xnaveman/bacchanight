@@ -44,7 +44,7 @@ export default function Game() {
     const [gameState, setGameState] = useState<GameState>('code');
     const [currentTableau, setCurrentTableau] = useState<typeof tableaux[0] | null>(null);
     const [money, setMoney] = useState(0);
-    const [message, setMessage] = useState("Fais attention je pense que la porte est fermée va falloir la crocheter, tout ce que t'as à faire c'est rentrer le code qu'il y'a en face de toi");
+    const [message, setMessage] = useState("Fait gaffe a pas déclencher l'alarme quand tu vole un tableau, tout ce que t'as à faire c'est rentrer le code qu'il y'a à coté");
     const [stolenTableaux, setStolenTableaux] = useState<string[]>([]);
     const [alarmTriggered, setAlarmTriggered] = useState(false);
     const [notificationVisible, setNotificationVisible] = useState(false);
@@ -115,7 +115,7 @@ export default function Game() {
     useEffect(() => {
         if (!isPickMoving || gameState !== 'lockpick') return;
         
-        const speed = 1.875; // Réduit de 25% (2.5 * 0.75 = 1.875)
+        const speed = 1.875;
         let animationId: number;
         let lastTime = Date.now();
         
@@ -124,7 +124,6 @@ export default function Game() {
             const deltaTime = currentTime - lastTime;
             lastTime = currentTime;
             
-            // Ajuste la vitesse en fonction du temps écoulé pour une animation fluide
             const adjustment = (deltaTime / 16);
             
             setPickPosition(prev => {
@@ -178,7 +177,7 @@ export default function Game() {
         const found = tableaux.find(t => t.code === code);
         
         if (found && stolenTableaux.includes(found.code)) {
-            showNotification("Tu as déjà volé ce tableau ! Trouve-en un autre.");
+            showNotification("T'as déjà volé ce tableau ! Trouve-en un autre.");
             setCodeInputs(['', '', '', '']);
             return;
         }
@@ -192,7 +191,7 @@ export default function Game() {
             setPickPosition(0);
             showNotification(`Ok, c'est bien le ${found.nom}. Prépare-toi à crocheter le cadenas !`);
         } else {
-            showNotification("Code invalide ! Vérifie le code sur le tableau.");
+            showNotification("C'est pas le bon code ! Vérifie à coté du tableau.");
             setCodeInputs(['', '', '', '']);
         }
     };
@@ -245,7 +244,7 @@ export default function Game() {
         setCurrentLockIndex(0);
         showNotification(alarmTriggered 
             ? "Bouge toi ! Les gardes arrivent ! Trouve le prochain tableau."
-            : "Bien joué ! Trouve le prochain tableau.");
+            : "Nickel ! Trouve le prochain tableau.");
     };
 
     const handleQuitLockpick = () => {
@@ -254,7 +253,7 @@ export default function Game() {
         setCodeInputs(['', '', '', '']);
         setCurrentLockIndex(0);
         setIsPickMoving(false);
-        showNotification("Tu as abandonné ce tableau. Trouve-en un autre !");
+        showNotification("T'as abandonné ce tableau. Trouve-en un autre !");
     };
 
     const formatTime = (seconds: number) => {
@@ -267,7 +266,7 @@ export default function Game() {
         return (
             <div className={styles.desktopWarning}>
                 <h1>Accès Mobile Uniquement</h1>
-                <p>Ce jeu est uniquement accessible sur mobile</p>
+                <p>Le jeu est uniquement accessible sur mobile</p>
                 <p>Utilisez un téléphone pour jouer</p>
             </div>
         );
