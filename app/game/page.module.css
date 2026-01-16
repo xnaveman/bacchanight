@@ -12,12 +12,13 @@
 }
 
 .desktopWarning h1 {
-    font-size: 4rem;
+    font-size: 2rem;
     margin: 0;
+    color: #F5A623;
 }
 
 .desktopWarning p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 5px 0;
     color: #ccc;
 }
@@ -26,93 +27,60 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    min-height: 100dvh;
+    padding: 10px;
     padding-bottom: 140px;
     background: #0D1321;
-    gap: 20px;
+    gap: 10px;
     position: relative;
+    overflow-x: hidden;
 }
 
-/* Notification style iPhone */
+/* Notification style iOS */
 .notification {
     width: 100%;
-    background: rgba(30, 30, 35, 0.95);
+    background: rgba(38, 42, 56, 0.98);
     backdrop-filter: blur(20px);
-    border-radius: 16px;
-    padding: 14px 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 18px;
+    padding: 16px 18px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateY(-40px) scale(0.9);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+}
+
+.notificationVisible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .notifHeader {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
 .notifIcon {
     width: 28px;
     height: 28px;
-    background: #F5A623;
-    border-radius: 50%;
-    position: relative;
-}
-
-.notifIcon::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 14px;
-    height: 14px;
-    background: #0D1321;
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    border-radius: 7px;
 }
 
 .notifTitle {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #888;
-    letter-spacing: 0.05em;
-    flex: 1;
-}
-
-.timerBadge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(231, 76, 60, 0.2);
-    padding: 4px 10px;
-    border-radius: 12px;
-}
-
-.timerIcon {
-    font-size: 0.9rem;
-}
-
-.timerValue {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #fff;
-    font-family: monospace;
-}
-
-.timerDanger {
-    color: #E74C3C !important;
-    animation: blink 0.5s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #999;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 .notifMessage {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: #E8E8E8;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0;
 }
 
@@ -125,34 +93,93 @@
     width: 100%;
     flex: 1;
     justify-content: center;
+    padding-top: 0;
+}
+
+/* Timer central pour page code */
+.timerDisplayCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.timerTextLarge {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #E74C3C;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+}
+
+.timerBarLarge {
+    width: 100%;
+    max-width: 250px;
+    height: 6px;
+    background: #222;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+}
+
+.timerProgressRed {
+    height: 100%;
+    background: #E74C3C;
+    transition: width 1s linear;
+}
+
+.timerProgressBlue {
+    height: 100%;
+    background: #0c0c0c00;
+    transition: width 1s linear;
+}
+
+.timerProgressDanger {
+    animation: blink 0.5s infinite;
+}
+
+.codeInputContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(26, 31, 46, 0.8);
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .codeInputs {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 6px;
 }
 
 .codeInput {
-    width: 55px;
-    height: 65px;
+    width: 36px;
+    height: 44px;
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    background: #1A1F2E;
-    border: 2px solid #333;
-    border-radius: 12px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #444;
     color: #fff;
     outline: none;
     transition: border-color 0.2s;
 }
 
 .codeInput:focus {
-    border-color: #F5A623;
+    border-bottom-color: #F5A623;
 }
 
 .codeInput::placeholder {
-    color: #444;
+    color: #555;
+}
+
+.lockIconSmall {
+    opacity: 0.6;
+    width: 24px;
+    height: 24px;
 }
 
 /* Boutons d'action */
@@ -160,46 +187,62 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
-    max-width: 320px;
-    padding: 18px;
-    background: #1A1F2E;
-    color: #fff;
-    border: 2px solid #333;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: bold;
+    gap: 8px;
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 20px;
+    background: #F5A623;
+    color: #0D1321;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 700;
     letter-spacing: 0.05em;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(245, 166, 35, 0.35);
 }
 
 .actionButton:active {
-    background: #252B3D;
+    background: #e09515;
+    transform: scale(0.98);
 }
 
 .actionButtonYellow {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
-    max-width: 320px;
-    padding: 22px 30px;
-    background: linear-gradient(135deg, #F5A623 0%, #D4881A 100%);
+    width: 100%;
+    max-width: 300px;
+    padding: 20px 28px;
+    background: #F5A623;
     color: #0D1321;
     border: none;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    letter-spacing: 0.05em;
+    border-radius: 28px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     -webkit-tap-highlight-color: transparent;
-    box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
+    box-shadow: 0 4px 20px rgba(245, 166, 35, 0.35);
     cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    z-index: 20;
 }
 
 .actionButtonYellow:active {
-    opacity: 0.9;
-    transform: scale(0.98);
+    transform: scale(0.97);
+    box-shadow: 0 2px 15px rgba(245, 166, 35, 0.25);
+}
+
+.timerDanger {
+    animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
 /* Section Lockpick */
@@ -207,52 +250,115 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 12px;
     width: 100%;
     flex: 1;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 0;
     position: relative;
+    z-index: 5;
 }
 
-.lockpickTimer {
-    position: absolute;
-    top: 0;
-    right: 0;
+.lockpickHeader {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 5px;
+    min-height: 40px;
 }
 
-.timerText {
+.timerDisplaySmall {
+    display: flex;
+    align-items: center;
+}
+
+.timerTextSmall {
     font-size: 1.5rem;
     font-weight: bold;
     color: #E74C3C;
-    font-family: monospace;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
 }
 
-.timerBarSmall {
-    width: 80px;
-    height: 4px;
-    background: #333;
-    border-radius: 2px;
-    overflow: hidden;
+.quitButton {
+    width: 36px;
+    height: 36px;
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid rgba(231, 76, 60, 0.4);
+    border-radius: 50%;
+    color: #E74C3C;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-left: auto;
 }
 
-.timerProgress {
-    height: 100%;
-    background: linear-gradient(90deg, #E74C3C, #C0392B);
-    transition: width 1s linear;
+.quitButton:active {
+    background: rgba(231, 76, 60, 0.4);
+    transform: scale(0.95);
+}
+
+.lockVisual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lockSwipe {
+    animation: swipeLock 0.5s ease-in-out;
+}
+
+@keyframes swipeLock {
+    0% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    40% {
+        transform: translateX(-100px) scale(0.8);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(100px) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.lockImage {
+    filter: drop-shadow(0 8px 25px rgba(245, 200, 66, 0.3));
+}
+
+.lockCounter {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #F5A623;
+    color: #0D1321;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .lockIndicator {
     display: flex;
-    gap: 10px;
+    gap: 6px;
+    margin-top: 8px;
 }
 
 .lockDot {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #333;
     border: 2px solid #555;
@@ -272,91 +378,20 @@
 
 @keyframes pulseDot {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-}
-
-.lockVisual {
-    position: relative;
-    margin: 10px 0;
-}
-
-.lockBody {
-    position: relative;
-    width: 120px;
-    height: 150px;
-}
-
-.lockShackle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 65px;
-    height: 50px;
-    border: 10px solid #D4A84B;
-    border-bottom: none;
-    border-radius: 40px 40px 0 0;
-    background: transparent;
-}
-
-.lockFace {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 110px;
-    height: 90px;
-    background: linear-gradient(145deg, #D4A84B, #A67C33);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid #8B6914;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.keyhole {
-    width: 20px;
-    height: 35px;
-    background: #0D1321;
-    border-radius: 50% 50% 5px 5px;
-    position: relative;
-}
-
-.keyhole::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 18px;
-    background: #0D1321;
-}
-
-.paperclipContainer {
-    position: relative;
-    width: 60px;
-    height: 100px;
-}
-
-.paperclip {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    50% { transform: scale(1.3); }
 }
 
 .pickArea {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .pickTrack {
     position: relative;
     width: 100%;
-    height: 50px;
+    height: 44px;
     background: #1A1F2E;
-    border-radius: 25px;
+    border-radius: 22px;
     overflow: hidden;
     border: 2px solid #333;
 }
@@ -367,7 +402,7 @@
     left: 40%;
     width: 20%;
     height: 100%;
-    background: rgba(95, 184, 148, 0.3);
+    background: rgba(95, 184, 148, 0.25);
     border-left: 2px solid #5FB894;
     border-right: 2px solid #5FB894;
 }
@@ -376,26 +411,27 @@
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 6px;
-    height: 40px;
-    background: linear-gradient(180deg, #fff, #ccc);
+    width: 5px;
+    height: 34px;
+    background: #fff;
     border-radius: 3px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
 }
 
+/* Penalty */
 .penaltySection {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     flex: 1;
 }
 
 .penaltyCircle {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -408,39 +444,40 @@
 }
 
 .penaltyNumber {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: bold;
     color: #E74C3C;
 }
 
 .penaltyText {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: #fff;
     margin: 0;
 }
 
 .penaltySubtext {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #E74C3C;
     margin: 0;
 }
 
+/* Success */
 .successSection {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     flex: 1;
 }
 
 .successIcon {
-    font-size: 5rem;
+    font-size: 3rem;
     color: #5FB894;
     background: rgba(95, 184, 148, 0.2);
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -448,73 +485,190 @@
 }
 
 .successTitle {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #fff;
     margin: 0;
 }
 
 .successTableau {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #888;
     margin: 0;
 }
 
 .successValue {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: #5FB894;
     margin: 0;
 }
 
+/* Section Sac - Plus petit pour petits écrans */
 .bagSection {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: -15px;
+    left: -15px;
+    right: -15px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: linear-gradient(180deg, transparent, #0D1321 30%);
-    padding-top: 40px;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
 }
 
-.bagInfo {
+.bagVisual {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: rgba(26, 31, 46, 0.9);
-    padding: 12px 20px;
-    border-radius: 20px;
-    border: 2px solid #5FB894;
+    justify-content: center;
+    width: 100%;
 }
 
-.bagIcon {
-    font-size: 0.8rem;
+.bagImage {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+}
+
+.moneyDisplay {
+    position: absolute;
+    bottom: 35px;
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    padding: 8px 20px;
+    border: 2px solid #F5A623;
+    border-radius: 10px;
+    background: rgba(13, 19, 33, 0.9);
+}
+
+.dollarSign {
+    font-size: 1.4rem;
     font-weight: bold;
     color: #F5A623;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
-.bagMoney {
-    font-size: 1.3rem;
+.moneyAmount {
+    font-size: 2rem;
     font-weight: bold;
-    color: #5FB894;
+    color: #fff;
+    font-family: 'Courier New', monospace;
 }
 
-.stolenList {
-    display: flex;
-    gap: 8px;
+/* Media queries pour très petits écrans */
+@media (max-height: 700px) {
+    .container {
+        padding-bottom: 120px;
+    }
+    
+    .notification {
+        padding: 14px 16px;
+    }
+    
+    .notifMessage {
+        font-size: 0.95rem;
+    }
+    
+    .timerTextLarge {
+        font-size: 2rem;
+    }
+    
+    .lockImage {
+        width: 100px !important;
+        height: 125px !important;
+    }
+    
+    .bagImage {
+        max-width: 300px;
+    }
+    
+    .moneyDisplay {
+        bottom: 30px;
+        padding: 6px 15px;
+    }
+    
+    .dollarSign {
+        font-size: 1.2rem;
+    }
+    
+    .moneyAmount {
+        font-size: 1.6rem;
+    }
+    
+    .successIcon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.5rem;
+    }
+    
+    .penaltyCircle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .penaltyNumber {
+        font-size: 2.5rem;
+    }
 }
 
-.stolenItem {
-    background: rgba(95, 184, 148, 0.2);
-    border: 1px solid #5FB894;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #5FB894;
+@media (max-height: 600px) {
+    .container {
+        padding-bottom: 100px;
+        gap: 8px;
+    }
+    
+    .notification {
+        padding: 12px 14px;
+        border-radius: 14px;
+    }
+    
+    .notifHeader {
+        margin-bottom: 6px;
+    }
+    
+    .notifMessage {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .timerTextLarge {
+        font-size: 1.8rem;
+    }
+    
+    .timerBarLarge {
+        height: 4px;
+    }
+    
+    .codeSection {
+        gap: 10px;
+    }
+    
+    .lockImage {
+        width: 80px !important;
+        height: 100px !important;
+    }
+    
+    .pickTrack {
+        height: 36px;
+    }
+    
+    .pickIndicator {
+        height: 28px;
+    }
+    
+    .actionButtonYellow {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .bagImage {
+        max-width: 260px;
+    }
+    
+    .moneyDisplay {
+        bottom: 25px;
+        padding: 5px 12px;
+    }
 }

@@ -2,14 +2,15 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 const tableaux = [
-    { code: "AB12", nom: "Tableau 1", valeur: 5000, difficulte: 1, messageApres: "Message tab 1" },
-    { code: "CD34", nom: "Tableau 2", valeur: 8000, difficulte: 2, messageApres: "Message Tab 2" },
-    { code: "EF56", nom: "Tableau 3", valeur: 12000, difficulte: 3, messageApres: "Message tab 3" },
-    { code: "GH78", nom: "Tableau 4", valeur: 10000, difficulte: 2, messageApres: "Message tab 4" },
-    { code: "IJ90", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
+    { code: "1234", nom: "Tableau 1", valeur: 5000, difficulte: 1, messageApres: "Message tab 1" },
+    { code: "5678", nom: "Tableau 2", valeur: 8000, difficulte: 2, messageApres: "Message Tab 2" },
+    { code: "9012", nom: "Tableau 3", valeur: 12000, difficulte: 3, messageApres: "Message tab 3" },
+    { code: "3456", nom: "Tableau 4", valeur: 10000, difficulte: 2, messageApres: "Message tab 4" },
+    { code: "7890", nom: "Tableau 5", valeur: 7000, difficulte: 1, messageApres: "Message tab 5" },
 ];
 
 type GameState = 'code' | 'lockpick' | 'success' | 'penalty';
@@ -20,9 +21,10 @@ export default function Game() {
     const [gameState, setGameState] = useState<GameState>('code');
     const [currentTableau, setCurrentTableau] = useState<typeof tableaux[0] | null>(null);
     const [money, setMoney] = useState(0);
-    const [message, setMessage] = useState("Message initial : premier vol de tableau");
+    const [message, setMessage] = useState("Fais attention je pense que la porte est fermée va falloir la crocheter, tout ce que t'as à faire c'est rentrer le code qu'il y'a en face de toi");
     const [stolenTableaux, setStolenTableaux] = useState<string[]>([]);
     const [alarmTriggered, setAlarmTriggered] = useState(false);
+    const [notificationVisible, setNotificationVisible] = useState(false);
     
     const [codeInputs, setCodeInputs] = useState(['', '', '', '']);
     
@@ -31,10 +33,16 @@ export default function Game() {
     const [isPickMoving, setIsPickMoving] = useState(false);
     const [currentLockIndex, setCurrentLockIndex] = useState(0);
     const [totalLocks, setTotalLocks] = useState(1);
+    const [lockTransition, setLockTransition] = useState(false);
     
     const [timeLeft, setTimeLeft] = useState(180);
     
     const [penaltyTime, setPenaltyTime] = useState(3);
+
+    // Animation d'entrée de la notification
+    useEffect(() => {
+        setTimeout(() => setNotificationVisible(true), 300);
+    }, []);
 
     useEffect(() => {
         const checkMobile = () => {
@@ -104,6 +112,14 @@ export default function Game() {
         return () => clearInterval(interval);
     }, [isPickMoving, gameState, pickDirection]);
 
+    const showNotification = (newMessage: string) => {
+        setNotificationVisible(false);
+        setTimeout(() => {
+            setMessage(newMessage);
+            setNotificationVisible(true);
+        }, 200);
+    };
+
     const handleCodeInput = (index: number, value: string) => {
         const newInputs = [...codeInputs];
         newInputs[index] = value.toUpperCase();
@@ -127,7 +143,7 @@ export default function Game() {
         const found = tableaux.find(t => t.code === code);
         
         if (found && stolenTableaux.includes(found.code)) {
-            setMessage("Tu as déjà volé ce tableau ! Trouve-en un autre.");
+            showNotification("Tu as déjà volé ce tableau ! Trouve-en un autre.");
             setCodeInputs(['', '', '', '']);
             return;
         }
@@ -139,9 +155,9 @@ export default function Game() {
             setGameState('lockpick');
             setIsPickMoving(true);
             setPickPosition(0);
-            setMessage(`${found.nom} - Valeur: ${found.valeur}$ - ${found.difficulte} cadenas à crocheter !`);
+            showNotification(`"À partir de là, tu auras 3min pour récupérer le plus de tableaux. Certains valent plus que d'autres mais sont plus difficile à récupérer, ton objectif : avoir le plus d'argent"`);
         } else {
-            setMessage("Code invalide ! Vérifie le code sur le tableau.");
+            showNotification("Code invalide ! Vérifie le code sur le tableau.");
             setCodeInputs(['', '', '', '']);
         }
     };
@@ -159,21 +175,27 @@ export default function Game() {
                 setMoney(m => m + currentTableau.valeur);
                 setStolenTableaux(prev => [...prev, currentTableau.code]);
                 setGameState('success');
-                setMessage(currentTableau.messageApres);
+                showNotification(currentTableau.messageApres);
                 
                 if (!alarmTriggered) {
                     setAlarmTriggered(true);
                 }
             } else {
-                setCurrentLockIndex(prev => prev + 1);
-                setPickPosition(0);
-                setIsPickMoving(true);
-                setMessage(`Cadenas ${currentLockIndex + 2}/${totalLocks} - Continue !`);
+                // Animation de transition entre cadenas
+                setLockTransition(true);
+                setIsPickMoving(false);
+                setTimeout(() => {
+                    setCurrentLockIndex(prev => prev + 1);
+                    setLockTransition(false);
+                    setPickPosition(0);
+                    setIsPickMoving(true);
+                }, 500);
+                showNotification(`Cadenas ${currentLockIndex + 2}/${totalLocks} - Continue !`);
             }
         } else {
             setGameState('penalty');
             setPenaltyTime(3);
-            setMessage("Raté");
+            showNotification("Raté ! Recommence !");
             
             if (alarmTriggered) {
                 setTimeLeft(t => Math.max(0, t - 3));
@@ -186,9 +208,18 @@ export default function Game() {
         setCurrentTableau(null);
         setCodeInputs(['', '', '', '']);
         setCurrentLockIndex(0);
-        setMessage(alarmTriggered 
+        showNotification(alarmTriggered 
             ? "Bouge toi ! Les gardes arrivent ! Trouve le prochain tableau."
-            : "Message initial.");
+            : "Bien joué ! Trouve le prochain tableau.");
+    };
+
+    const handleQuitLockpick = () => {
+        setGameState('code');
+        setCurrentTableau(null);
+        setCodeInputs(['', '', '', '']);
+        setCurrentLockIndex(0);
+        setIsPickMoving(false);
+        showNotification("Tu as abandonné ce tableau. Trouve-en un autre !");
     };
 
     const formatTime = (seconds: number) => {
@@ -209,40 +240,59 @@ export default function Game() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.notification}>
+            {/* Notification style iOS */}
+            <div className={`${styles.notification} ${notificationVisible ? styles.notificationVisible : ''}`}>
                 <div className={styles.notifHeader}>
+                    <Image src="/complice.svg" alt="Complice" width={24} height={24} className={styles.notifIcon} />
                     <span className={styles.notifTitle}>COMPLICE</span>
-                    {alarmTriggered && (
-                        <div className={styles.timerBadge}>
-                            <span className={`${styles.timerValue} ${timeLeft <= 30 ? styles.timerDanger : ''}`}>
-                                {formatTime(timeLeft)}
-                            </span>
-                        </div>
-                    )}
                 </div>
                 <p className={styles.notifMessage}>{message}</p>
             </div>
 
             {gameState === 'code' && (
                 <div className={styles.codeSection}>
-                    <div className={styles.codeInputs}>
-                        {codeInputs.map((val, i) => (
-                            <input
-                                key={i}
-                                id={`code-${i}`}
-                                type="text"
-                                value={val}
-                                onChange={(e) => handleCodeInput(i, e.target.value)}
-                                onKeyDown={(e) => handleKeyDown(i, e)}
-                                className={styles.codeInput}
-                                maxLength={1}
-                                placeholder={i < 2 ? "A" : "0"}
-                                autoComplete="off"
-                            />
-                        ))}
+                    {alarmTriggered && (
+                        <div className={styles.timerDisplayCenter}>
+                            <span className={`${styles.timerTextLarge} ${timeLeft <= 30 ? styles.timerDanger : ''}`}>
+                                {formatTime(timeLeft)}
+                            </span>
+                            <div className={styles.timerBarLarge}>
+                                <div 
+                                    className={`${styles.timerProgressRed} ${timeLeft <= 30 ? styles.timerProgressDanger : ''}`}
+                                    style={{ width: `${(timeLeft / 180) * 100}%` }}
+                                />
+                                <div 
+                                    className={styles.timerProgressEmpty}
+                                    style={{ width: `${100 - (timeLeft / 180) * 100}%` }}
+                                />
+                            </div>
+                        </div>
+                    )}
+                    
+                    <div className={styles.codeInputContainer}>
+                        <div className={styles.codeInputs}>
+                            {codeInputs.map((val, i) => (
+                                <input
+                                    key={i}
+                                    id={`code-${i}`}
+                                    type="tel"
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
+                                    value={val}
+                                    onChange={(e) => handleCodeInput(i, e.target.value.replace(/[^0-9]/g, ''))}
+                                    onKeyDown={(e) => handleKeyDown(i, e)}
+                                    className={styles.codeInput}
+                                    maxLength={1}
+                                    placeholder="0"
+                                    autoComplete="off"
+                                />
+                            ))}
+                        </div>
+                        <Image src="/cadenas.svg" alt="Cadenas" width={28} height={28} className={styles.lockIconSmall} />
                     </div>
                     
                     <button className={styles.actionButton} onClick={handleValidateCode}>
+                        <Image src="/fingerprint.svg" alt="" width={20} height={20} />
                         IDENTIFIER LE TABLEAU
                     </button>
                 </div>
@@ -250,48 +300,34 @@ export default function Game() {
 
             {gameState === 'lockpick' && (
                 <div className={styles.lockpickSection}>
-                    {alarmTriggered && (
-                        <div className={styles.lockpickTimer}>
-                            <span className={`${styles.timerText} ${timeLeft <= 30 ? styles.timerDanger : ''}`}>
-                                {formatTime(timeLeft)}
-                            </span>
-                            <div className={styles.timerBarSmall}>
+                    <div className={styles.lockpickHeader}>
+                        {alarmTriggered && (
+                            <div className={styles.timerDisplaySmall}>
+                                <span className={`${styles.timerTextSmall} ${timeLeft <= 30 ? styles.timerDanger : ''}`}>
+                                    {formatTime(timeLeft)}
+                                </span>
+                            </div>
+                        )}
+                        <button className={styles.quitButton} onClick={handleQuitLockpick}>
+                            ✕
+                        </button>
+                    </div>
+
+                    <div className={`${styles.lockVisual} ${lockTransition ? styles.lockSwipe : ''}`}>
+                        <Image src="/cadenas.svg" alt="Cadenas" width={120} height={150} className={styles.lockImage} />
+                        {totalLocks > 1 && (
+                            <div className={styles.lockCounter}>
+                                {currentLockIndex + 1} / {totalLocks}
+                            </div>
+                        )}
+                        <div className={styles.lockIndicator}>
+                            {Array.from({ length: totalLocks }).map((_, i) => (
                                 <div 
-                                    className={styles.timerProgress} 
-                                    style={{ width: `${(timeLeft / 180) * 100}%` }}
+                                    key={i} 
+                                    className={`${styles.lockDot} ${i < currentLockIndex ? styles.lockDone : ''} ${i === currentLockIndex ? styles.lockCurrent : ''}`}
                                 />
-                            </div>
+                            ))}
                         </div>
-                    )}
-                    
-                    <div className={styles.lockIndicator}>
-                        {Array.from({ length: totalLocks }).map((_, i) => (
-                            <div 
-                                key={i} 
-                                className={`${styles.lockDot} ${i < currentLockIndex ? styles.lockDone : ''} ${i === currentLockIndex ? styles.lockCurrent : ''}`}
-                            />
-                        ))}
-                    </div>
-
-                    <div className={styles.lockVisual}>
-                        <div className={styles.lockBody}>
-                            <div className={styles.lockShackle}></div>
-                            <div className={styles.lockFace}>
-                                <div className={styles.keyhole}></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.paperclipContainer}>
-                        <svg className={styles.paperclip} viewBox="0 0 40 120">
-                            <path 
-                                d="M20 10 L20 100 Q20 110 10 110 Q0 110 0 100 L0 30 Q0 20 10 20 L30 20 Q40 20 40 30 L40 90 Q40 100 30 100 L20 100"
-                                fill="none"
-                                stroke="#C0C0C0"
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                            />
-                        </svg>
                     </div>
 
                     <div className={styles.pickArea}>
@@ -336,7 +372,7 @@ export default function Game() {
                         </svg>
                         <span className={styles.penaltyNumber}>{penaltyTime}</span>
                     </div>
-                    <p className={styles.penaltyText}>Trombone cassé !</p>
+                    <p className={styles.penaltyText}>Raté !</p>
                     {alarmTriggered && <p className={styles.penaltySubtext}>-3 secondes</p>}
                 </div>
             )}
@@ -357,16 +393,17 @@ export default function Game() {
                 </div>
             )}
 
-            <div className={styles.bagSection}>
-                <div className={styles.bagInfo}>
-                    <span className={styles.bagMoney}>{money.toLocaleString()}$</span>
+            {gameState !== 'lockpick' && gameState !== 'penalty' && (
+                <div className={styles.bagSection}>
+                    <div className={styles.bagVisual}>
+                        <Image src="/bag.svg" alt="Sac" width={200} height={200} className={styles.bagImage} />
+                        <div className={styles.moneyDisplay}>
+                            <span className={styles.dollarSign}>$</span>
+                            <span className={styles.moneyAmount}>{money.toLocaleString().padStart(2, '0')}</span>
+                        </div>
+                    </div>
                 </div>
-                <div className={styles.stolenList}>
-                    {stolenTableaux.slice(-3).map((code, i) => (
-                        <div key={i} className={styles.stolenItem}>{code}</div>
-                    ))}
-                </div>
-            </div>
+            )}
         </div>
     );
 }

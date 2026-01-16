@@ -1,11 +1,21 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import TransitionLink from './components/TransitionLink';
 import styles from './page.module.css';
 
+const chatMessages = [
+    { type: 'user', text: "Tu penses que ça ira ?" },
+    { type: 'complice', text: "Mais oui ça va être simple tu verras ! 👌" },
+    { type: 'complice', text: "Juste trouves le code des tableaux, c'est sous le format XXXX, j'ai fait du repérage dans le musée, 4 chiffres seront affichés a côté de chaque tableau, et j'ai noté aussi ceux qui valent le plus cher 💸" },
+    { type: 'complice', text: "Ensuite tu crochètes les cadenas 🔓" },
+    { type: 'complice', text: "Et tu te barres avant la fin de l'alarme. Simple non ? 🤫" },
+];
+
 export default function Home() {
     const [isMobile, setIsMobile] = useState(true);
+    const [visibleMessages, setVisibleMessages] = useState<number[]>([]);
 
     useEffect(() => {
         const checkMobile = () => {
@@ -14,6 +24,14 @@ export default function Home() {
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        chatMessages.forEach((_, index) => {
+            setTimeout(() => {
+                setVisibleMessages(prev => [...prev, index]);
+            }, index * 400 + 300);
+        });
     }, []);
 
     if (!isMobile) {
@@ -28,36 +46,21 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.titleSection}>
-                <span className={styles.titleSmall}>THE</span>
-                <h1 className={styles.title}>ART</h1>
-                <h1 className={styles.titleOutline}>HEIST</h1>
-            </div>
-            
-            <p className={styles.subtitle}>
-                Infiltrez le musée. Volez les œuvres. Échappez-vous.
-            </p>
-            
-            <div className={styles.instructions}>
-                <div className={styles.instructionItem}>
-                    <span className={styles.instructionNumber}>1</span>
-                    <span>Trouvez les codes des tableaux</span>
-                </div>
-                <div className={styles.instructionItem}>
-                    <span className={styles.instructionNumber}>2</span>
-                    <span>Crochetez les cadenas</span>
-                </div>
-                <div className={styles.instructionItem}>
-                    <span className={styles.instructionNumber}>3</span>
-                    <span>Évitez l&apos;alarme</span>
-                </div>
+            <Image src="/title.svg" alt="The Art'Heist" width={280} height={80} className={styles.titleImage} priority />
+            <div className={styles.chatContainer}>
+                {chatMessages.map((msg, index) => (
+                    <div 
+                        key={index}
+                        className={`${styles.chatBubble} ${msg.type === 'user' ? styles.userBubble : styles.compliceBubble} ${visibleMessages.includes(index) ? styles.visible : ''}`}
+                    >
+                        {msg.text}
+                    </div>
+                ))}
             </div>
 
             <TransitionLink href="/game" className={styles.startButton}>
                 INFILTRER LE MUSÉE
             </TransitionLink>
-            
-            {/*<p className={styles.footer}>Bacchanight 2026</p>*/}
         </div>
     );
 }
