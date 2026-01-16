@@ -148,7 +148,7 @@ export default function GameOver() {
                 <h1 className={styles.endTitle}>THE ART&apos;HEIST</h1>
 
                 <button className={styles.endButton} onClick={() => window.location.href = '/'}>
-                    Merci d&apos;avoir jouer
+                    Merci d&apos;avoir joué !
                 </button>
             </div>
         </div>
