@@ -58,7 +58,7 @@ export default function Game() {
     const [totalLocks, setTotalLocks] = useState(1);
     const [lockTransition, setLockTransition] = useState(false);
     
-    const [timeLeft, setTimeLeft] = useState(180);
+    const [timeLeft, setTimeLeft] = useState(120);
     
     const [penaltyTime, setPenaltyTime] = useState(3);
 
@@ -292,11 +292,11 @@ export default function Game() {
                             <div className={styles.timerBarLarge}>
                                 <div 
                                     className={`${styles.timerProgressRed} ${timeLeft <= 30 ? styles.timerProgressDanger : ''}`}
-                                    style={{ width: `${(timeLeft / 180) * 100}%` }}
+                                    style={{ width: `${(timeLeft / 120) * 100}%` }}
                                 />
                                 <div 
                                     className={styles.timerProgressEmpty}
-                                    style={{ width: `${100 - (timeLeft / 180) * 100}%` }}
+                                    style={{ width: `${100 - (timeLeft / 120) * 100}%` }}
                                 />
                             </div>
                         </div>
