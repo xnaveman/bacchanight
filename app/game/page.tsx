@@ -115,7 +115,7 @@ export default function Game() {
     useEffect(() => {
         if (!isPickMoving || gameState !== 'lockpick') return;
         
-        const speed = 1.75;
+        const speed = 1.725;
         let animationId: number;
         let lastTime = Date.now();
         
@@ -201,8 +201,8 @@ export default function Game() {
         
         setIsPickMoving(false);
         
-        const successStart = 38;
-        const successEnd = 62;
+        const successStart = 40;
+        const successEnd = 60;
         
         if (pickPosition >= successStart && pickPosition <= successEnd) {
             if (currentLockIndex + 1 >= totalLocks) {
