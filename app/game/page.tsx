@@ -115,7 +115,7 @@ export default function Game() {
     useEffect(() => {
         if (!isPickMoving || gameState !== 'lockpick') return;
         
-        const speed = 2.5;
+        const speed = 1.875; // Réduit de 25% (2.5 * 0.75 = 1.875)
         
         const interval = setInterval(() => {
             setPickPosition(prev => {
@@ -178,7 +178,7 @@ export default function Game() {
             setGameState('lockpick');
             setIsPickMoving(true);
             setPickPosition(0);
-            showNotification(`"À partir de là, tu auras 3min pour récupérer le plus de tableaux. Certains valent plus que d'autres mais sont plus difficile à récupérer, ton objectif : avoir le plus d'argent"`);
+            showNotification(`Ok, c'est bien le ${found.nom}. Prépare-toi à crocheter le cadenas !`);
         } else {
             showNotification("Code invalide ! Vérifie le code sur le tableau.");
             setCodeInputs(['', '', '', '']);
