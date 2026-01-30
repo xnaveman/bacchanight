@@ -114,3 +114,25 @@
 .startButton:active {
     transform: scale(0.97);
 }
+
+.leaderboardButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 280px;
+    padding: 18px 30px;
+    background: rgba(122, 122, 122, 0.43);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    margin-bottom: 30px;
+}
+
+.leaderboardButton:active {
+    transform: scale(0.97);
+}

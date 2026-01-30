@@ -61,6 +61,11 @@ export default function Home() {
             <TransitionLink href="/game" className={styles.startButton}>
                 INFILTRER LE MUSÉE
             </TransitionLink>
+            
+            <TransitionLink href="/leaderboard" className={styles.leaderboardButton}>
+                VOIR LE CLASSEMENT
+            </TransitionLink>
+
         </div>
     );
 }
