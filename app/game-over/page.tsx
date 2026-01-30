@@ -140,7 +140,7 @@ export default function GameOver() {
                 </button>
 
                 <p style={{ fontSize: '10px', opacity: 0.6, marginTop: '20px', textAlign: 'center' }}>
-                    Les images finales et les bons codes seront tous prêts pour le jour J, le jeu n&apos;est pas complètement terminé ! Un classement sera disponible également pour mesurer sa performance !
+                    Les images finales et les bons codes seront tous prêts pour le jour J, le jeu n&apos;est pas complètement mis en place, il le sera pour la baccanight ! Un classement sera disponible également pour mesurer sa performance !
                 </p>
             </div>
         </div>
