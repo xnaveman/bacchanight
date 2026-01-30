@@ -6,34 +6,22 @@ import styles from './page.module.css';
 
 // Les tableaux avec leurs infos - à synchroniser avec game/page.tsx
 const tableauxData: Record<string, { nom: string; artiste: string; date: string; valeur: number; image: string }> = {
-    "0384": { nom: "Tableau 1", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "7291": { nom: "Tableau 2", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "4607": { nom: "Tableau 3", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "9152": { nom: "Tableau 4", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "2846": { nom: "Tableau simple", artiste: "Artiste X", date: "vers 1900", valeur: 3500, image: "placeholder.webp" },
-    "6703": { nom: "Tableau reconnu", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "1498": { nom: "Tableau cher", artiste: "Artiste X", date: "vers 1900", valeur: 10000, image: "placeholder.webp" },
-    "5029": { nom: "Tableau reconnu", artiste: "Artiste X", date: "vers 1900", valeur: 8000, image: "placeholder.webp" },
-    "8361": { nom: "Tableau reconnu", artiste: "Artiste X", date: "vers 1900", valeur: 4000, image: "placeholder.webp" },
-    "7740": { nom: "Tableau simple", artiste: "Artiste X", date: "vers 1900", valeur: 3500, image: "placeholder.webp" },
-    "0916": { nom: "Tableau simple", artiste: "Artiste X", date: "vers 1900", valeur: 3500, image: "placeholder.webp" },
-    "3582": { nom: "Tableau ", artiste: "Artiste X", date: "vers 1900", valeur: 6000, image: "placeholder.webp" },
-    "6409": { nom: "Tableau", artiste: "Artiste X", date: "vers 1900", valeur: 2500, image: "placeholder.webp" },
-    "2175": { nom: "Tableau 5", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "9843": { nom: "Tableau 5", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "4031": { nom: "Tableau 5", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "5687": { nom: "Tableau 5", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "7924": { nom: "Tableau 5", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "1250": { nom: "Tableau 5", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "6819": { nom: "Tableau 5", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "9476": { nom: "Tableau 5", artiste: "Artiste X", date: "vers 1900", valeur: 5000, image: "placeholder.webp" },
-    "3068": { nom: "Tableau simple", artiste: "Artiste X", date: "vers 1900", valeur: 1000, image: "placeholder.webp" },
-    "8542": { nom: "Tableau", artiste: "Artiste X", date: "vers 1900", valeur: 4000, image: "placeholder.webp" },
-    "2397": { nom: "Tableau", artiste: "Artiste X", date: "vers 1900", valeur: 2500, image: "placeholder.webp" },
-    "7104": { nom: "Tableau simple", artiste: "Artiste X", date: "vers 1900", valeur: 3000, image: "placeholder.webp" },
-    "4926": { nom: "Tableau simple", artiste: "Artiste X", date: "vers 1900", valeur: 3000, image: "placeholder.webp" },
-    "8635": { nom: "Tableau cher", artiste: "Artiste X", date: "vers 1900", valeur: 15000, image: "placeholder.webp" },
-    "0509": { nom: "Tableau très cher", artiste: "Artiste X", date: "vers 1900", valeur: 20000, image: "placeholder.webp" },
+    "0384": { nom: "Nature morte aux raisins", artiste: "Maurice De Vlaminck", date: "1936", valeur: 12500, image: "/tableaux/placeholder.webp" },
+    "7291": { nom: "Maternité", artiste: "Gaston Schnegg", date: "20ème siècle", valeur: 25000, image: "/tableaux/placeholder.webp" },
+    "4607": { nom: "L'imagier", artiste: "Gaston Schnegg", date: "1942", valeur: 55000, image: "/tableaux/placeholder.webp" },
+    "9152": { nom: "La leçon aux poupées", artiste: "Gaston Schnegg", date: "vers 1900", valeur: 45000, image: "/tableaux/placeholder.webp" },
+    "2846": { nom: "Jeanne Schnegg cousant", artiste: "Gaston Schnegg", date: "vers 1900", valeur: 35000, image: "/tableaux/placeholder.webp" },
+    "6703": { nom: "Le Pont-Neuf, la nuit", artiste: "Albert Marquet", date: "1937", valeur: 75000, image: "/tableaux/placeholder.webp" },
+    "1498": { nom: "Jardin au Pyla", artiste: "Albert Marquet", date: "1935", valeur: 60000, image: "/tableaux/placeholder.webp" },
+    "5029": { nom: "La Rochelle", artiste: "Albert Marquet", date: "1920", valeur: 20000, image: "/tableaux/placeholder.webp" },
+    "8361": { nom: "L'escadre alliée à Alger", artiste: "Albert Marquet", date: "1942", valeur: 30000, image: "/tableaux/placeholder.webp" },
+    "7740": { nom: "La Seine à Herblay", artiste: "Albert Marquet", date: "1919", valeur: 35000, image: "/tableaux/placeholder.webp" },
+    "0916": { nom: "Le Port de Marseille", artiste: "Albert Marquet", date: "1916", valeur: 48000, image: "/tableaux/placeholder.webp" },
+    "3582": { nom: "Stockholm, la grue", artiste: "Albert Marquet", date: "1938", valeur: 25000, image: "/tableaux/placeholder.webp" },
+    "6409": { nom: "L'hôpital Broca", artiste: "Maurice De Vlaminck", date: "1917", valeur: 35000, image: "/tableaux/placeholder.webp" },
+    "2175": { nom: "Voiliers à Honfleur", artiste: "Félix Vallotton", date: "1913", valeur: 23000, image: "/tableaux/placeholder.webp" },
+    "9843": { nom: "Petite fille à la guitare", artiste: "Marie Laurencin", date: "1940", valeur: 45000, image: "/tableaux/placeholder.webp" },
+    "4031": { nom: "Conversation", artiste: "Louis Pierre Rigal", date: "1913", valeur: 55000, image: "/tableaux/placeholder.webp" },
 };
 
 interface GameResults {
@@ -150,6 +138,10 @@ export default function GameOver() {
                 <button className={styles.endButton} onClick={() => window.location.href = '/'}>
                     Merci d&apos;avoir joué !
                 </button>
+
+                <p style={{ fontSize: '10px', opacity: 0.6, marginTop: '20px', textAlign: 'center' }}>
+                    Les images finales et les bons codes seront tous prêts pour le jour J, le jeu n&apos;est pas complètement terminé ! Un classement sera disponible également pour mesurer sa performance !
+                </p>
             </div>
         </div>
     );
